@@ -72,7 +72,7 @@ void FirstChallenge::process()
             if(odometry_.pose.pose.position.x <= 1.0){
                 straght();
             }
-            else if (init_theta - current_theta >= -0.1 ){
+            else if (init_theta - current_theta <= 3.14 ){
                 turn();
             }
             else{
