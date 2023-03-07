@@ -69,6 +69,8 @@ void FirstChallenge::process()
 
         if(scan() >= 0.50)
         {
+            printf("init = %lf\n", init_theta);
+            printf("current = %lf\n", current_theta);
             if(odometry_.pose.pose.position.x <= 1.0){
                 straght();
             }
