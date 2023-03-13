@@ -60,30 +60,36 @@ float FirstChallenge::scan()
 void FirstChallenge::process()
 {
     ros::Rate loop_rate(hz_);
-    init_theta = tf::getYaw(odometry_.pose.pose.orientation);
+    init_theta = tf2::getYaw(odometry_.pose.pose.orientation);
 
     while(ros::ok())
     {
         ros::spinOnce();
-        current_theta = tf::getYaw(odometry_.pose.pose.orientation);
+        current_theta = tf2::getYaw(odometry_.pose.pose.orientation);
 
         if(scan() >= 0.50)
         {
             printf("init = %lf\n", init_theta);
             printf("current = %lf\n", current_theta);
+            printf("x = %lf\n", odometry_.pose.pose.position.x);
+
             if(odometry_.pose.pose.position.x <= 1.0){
                 straght();
+                printf("straght1");
             }
             else if (init_theta - current_theta <= 3.14 ){
                 turn();
+                printf("turn");
             }
             else{
                 straght();
+                printf("straght2");
             }
         }
         else
         {
             stop();
+            printf("stop");
         }
         loop_rate.sleep();
     }
