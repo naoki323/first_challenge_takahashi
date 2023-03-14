@@ -28,6 +28,7 @@ class FirstChallenge
         int hz_;
         float init_theta;
         float current_theta;
+        bool turning1_;
 
         nav_msgs::Odometry odometry_;
         nav_msgs::Odometry old_odom_;
